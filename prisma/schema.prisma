@@ -1,0 +1,105 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String       @id @default(cuid())
+  username       String       @unique
+  email          String       @unique
+  hashedPassword String
+  createdAt      DateTime     @default(now())
+  teams          Team[]
+  tournaments    Tournament[]
+}
+
+model Pokemon {
+  id             Int          @id
+  name           String
+  type1          String
+  type2          String?
+  hp             Int
+  attack         Int
+  defense        Int
+  specialAttack  Int
+  specialDefense Int
+  speed          Int
+  spriteUrl      String
+  artworkUrl     String
+  teamMembers    TeamMember[]
+}
+
+model Team {
+  id            String                   @id @default(cuid())
+  name          String
+  userId        String
+  createdAt     DateTime                 @default(now())
+  user          User                     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  members       TeamMember[]
+  registrations TournamentRegistration[]
+  matchesAsTeam1 Match[]                 @relation("team1")
+  matchesAsTeam2 Match[]                 @relation("team2")
+  matchesWon     Match[]                 @relation("winner")
+}
+
+model TeamMember {
+  id        String  @id @default(cuid())
+  teamId    String
+  pokemonId Int
+  slot      Int
+  team      Team    @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  pokemon   Pokemon @relation(fields: [pokemonId], references: [id])
+
+  @@unique([teamId, slot])
+}
+
+model Tournament {
+  id            String                   @id @default(cuid())
+  name          String
+  description   String?
+  maxTeams      Int
+  startDate     DateTime
+  status        String                   @default("registration")
+  createdAt     DateTime                 @default(now())
+  createdById   String
+  createdBy     User                     @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  registrations TournamentRegistration[]
+  matches       Match[]
+}
+
+model TournamentRegistration {
+  id           String     @id @default(cuid())
+  tournamentId String
+  teamId       String
+  seed         Int?
+  createdAt    DateTime   @default(now())
+  tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  team         Team       @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@unique([tournamentId, teamId])
+}
+
+model Match {
+  id           String     @id @default(cuid())
+  tournamentId String
+  round        Int
+  position     Int
+  team1Id      String?
+  team2Id      String?
+  winnerId     String?
+  score1       Int?
+  score2       Int?
+  status       String     @default("pending")
+  completedAt  DateTime?
+  tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+  team1        Team?      @relation("team1", fields: [team1Id], references: [id])
+  team2        Team?      @relation("team2", fields: [team2Id], references: [id])
+  winner       Team?      @relation("winner", fields: [winnerId], references: [id])
+
+  @@unique([tournamentId, round, position])
+}
