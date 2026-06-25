@@ -49,7 +49,7 @@ export default function HomePage() {
               Build Your Team
             </h3>
             <p className="text-gray-400 text-sm">
-              Choose from all 151 original Pokemon. View stats, types, and
+              Choose from 208 Pokémon Champions roster picks. View stats, types, and
               abilities to craft the perfect roster of 6.
             </p>
           </div>

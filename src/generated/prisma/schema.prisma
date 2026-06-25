@@ -52,6 +52,11 @@ model TeamMember {
   teamId    String
   pokemonId Int
   slot      Int
+  heldItem  String?
+  move1     String?
+  move2     String?
+  move3     String?
+  move4     String?
   team      Team    @relation(fields: [teamId], references: [id], onDelete: Cascade)
   pokemon   Pokemon @relation(fields: [pokemonId], references: [id])
 

@@ -5109,6 +5109,11 @@ export namespace Prisma {
     teamId: string | null
     pokemonId: number | null
     slot: number | null
+    heldItem: string | null
+    move1: string | null
+    move2: string | null
+    move3: string | null
+    move4: string | null
   }
 
   export type TeamMemberMaxAggregateOutputType = {
@@ -5116,6 +5121,11 @@ export namespace Prisma {
     teamId: string | null
     pokemonId: number | null
     slot: number | null
+    heldItem: string | null
+    move1: string | null
+    move2: string | null
+    move3: string | null
+    move4: string | null
   }
 
   export type TeamMemberCountAggregateOutputType = {
@@ -5123,6 +5133,11 @@ export namespace Prisma {
     teamId: number
     pokemonId: number
     slot: number
+    heldItem: number
+    move1: number
+    move2: number
+    move3: number
+    move4: number
     _all: number
   }
 
@@ -5142,6 +5157,11 @@ export namespace Prisma {
     teamId?: true
     pokemonId?: true
     slot?: true
+    heldItem?: true
+    move1?: true
+    move2?: true
+    move3?: true
+    move4?: true
   }
 
   export type TeamMemberMaxAggregateInputType = {
@@ -5149,6 +5169,11 @@ export namespace Prisma {
     teamId?: true
     pokemonId?: true
     slot?: true
+    heldItem?: true
+    move1?: true
+    move2?: true
+    move3?: true
+    move4?: true
   }
 
   export type TeamMemberCountAggregateInputType = {
@@ -5156,6 +5181,11 @@ export namespace Prisma {
     teamId?: true
     pokemonId?: true
     slot?: true
+    heldItem?: true
+    move1?: true
+    move2?: true
+    move3?: true
+    move4?: true
     _all?: true
   }
 
@@ -5250,6 +5280,11 @@ export namespace Prisma {
     teamId: string
     pokemonId: number
     slot: number
+    heldItem: string | null
+    move1: string | null
+    move2: string | null
+    move3: string | null
+    move4: string | null
     _count: TeamMemberCountAggregateOutputType | null
     _avg: TeamMemberAvgAggregateOutputType | null
     _sum: TeamMemberSumAggregateOutputType | null
@@ -5276,6 +5311,11 @@ export namespace Prisma {
     teamId?: boolean
     pokemonId?: boolean
     slot?: boolean
+    heldItem?: boolean
+    move1?: boolean
+    move2?: boolean
+    move3?: boolean
+    move4?: boolean
     team?: boolean | TeamDefaultArgs<ExtArgs>
     pokemon?: boolean | PokemonDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teamMember"]>
@@ -5285,6 +5325,11 @@ export namespace Prisma {
     teamId?: boolean
     pokemonId?: boolean
     slot?: boolean
+    heldItem?: boolean
+    move1?: boolean
+    move2?: boolean
+    move3?: boolean
+    move4?: boolean
     team?: boolean | TeamDefaultArgs<ExtArgs>
     pokemon?: boolean | PokemonDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teamMember"]>
@@ -5294,6 +5339,11 @@ export namespace Prisma {
     teamId?: boolean
     pokemonId?: boolean
     slot?: boolean
+    heldItem?: boolean
+    move1?: boolean
+    move2?: boolean
+    move3?: boolean
+    move4?: boolean
     team?: boolean | TeamDefaultArgs<ExtArgs>
     pokemon?: boolean | PokemonDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["teamMember"]>
@@ -5303,9 +5353,14 @@ export namespace Prisma {
     teamId?: boolean
     pokemonId?: boolean
     slot?: boolean
+    heldItem?: boolean
+    move1?: boolean
+    move2?: boolean
+    move3?: boolean
+    move4?: boolean
   }
 
-  export type TeamMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teamId" | "pokemonId" | "slot", ExtArgs["result"]["teamMember"]>
+  export type TeamMemberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "teamId" | "pokemonId" | "slot" | "heldItem" | "move1" | "move2" | "move3" | "move4", ExtArgs["result"]["teamMember"]>
   export type TeamMemberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     team?: boolean | TeamDefaultArgs<ExtArgs>
     pokemon?: boolean | PokemonDefaultArgs<ExtArgs>
@@ -5330,6 +5385,11 @@ export namespace Prisma {
       teamId: string
       pokemonId: number
       slot: number
+      heldItem: string | null
+      move1: string | null
+      move2: string | null
+      move3: string | null
+      move4: string | null
     }, ExtArgs["result"]["teamMember"]>
     composites: {}
   }
@@ -5759,6 +5819,11 @@ export namespace Prisma {
     readonly teamId: FieldRef<"TeamMember", 'String'>
     readonly pokemonId: FieldRef<"TeamMember", 'Int'>
     readonly slot: FieldRef<"TeamMember", 'Int'>
+    readonly heldItem: FieldRef<"TeamMember", 'String'>
+    readonly move1: FieldRef<"TeamMember", 'String'>
+    readonly move2: FieldRef<"TeamMember", 'String'>
+    readonly move3: FieldRef<"TeamMember", 'String'>
+    readonly move4: FieldRef<"TeamMember", 'String'>
   }
     
 
@@ -9771,7 +9836,12 @@ export namespace Prisma {
     id: 'id',
     teamId: 'teamId',
     pokemonId: 'pokemonId',
-    slot: 'slot'
+    slot: 'slot',
+    heldItem: 'heldItem',
+    move1: 'move1',
+    move2: 'move2',
+    move3: 'move3',
+    move4: 'move4'
   };
 
   export type TeamMemberScalarFieldEnum = (typeof TeamMemberScalarFieldEnum)[keyof typeof TeamMemberScalarFieldEnum]
@@ -10094,6 +10164,11 @@ export namespace Prisma {
     teamId?: StringFilter<"TeamMember"> | string
     pokemonId?: IntFilter<"TeamMember"> | number
     slot?: IntFilter<"TeamMember"> | number
+    heldItem?: StringNullableFilter<"TeamMember"> | string | null
+    move1?: StringNullableFilter<"TeamMember"> | string | null
+    move2?: StringNullableFilter<"TeamMember"> | string | null
+    move3?: StringNullableFilter<"TeamMember"> | string | null
+    move4?: StringNullableFilter<"TeamMember"> | string | null
     team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
     pokemon?: XOR<PokemonScalarRelationFilter, PokemonWhereInput>
   }
@@ -10103,6 +10178,11 @@ export namespace Prisma {
     teamId?: SortOrder
     pokemonId?: SortOrder
     slot?: SortOrder
+    heldItem?: SortOrderInput | SortOrder
+    move1?: SortOrderInput | SortOrder
+    move2?: SortOrderInput | SortOrder
+    move3?: SortOrderInput | SortOrder
+    move4?: SortOrderInput | SortOrder
     team?: TeamOrderByWithRelationInput
     pokemon?: PokemonOrderByWithRelationInput
   }
@@ -10116,6 +10196,11 @@ export namespace Prisma {
     teamId?: StringFilter<"TeamMember"> | string
     pokemonId?: IntFilter<"TeamMember"> | number
     slot?: IntFilter<"TeamMember"> | number
+    heldItem?: StringNullableFilter<"TeamMember"> | string | null
+    move1?: StringNullableFilter<"TeamMember"> | string | null
+    move2?: StringNullableFilter<"TeamMember"> | string | null
+    move3?: StringNullableFilter<"TeamMember"> | string | null
+    move4?: StringNullableFilter<"TeamMember"> | string | null
     team?: XOR<TeamScalarRelationFilter, TeamWhereInput>
     pokemon?: XOR<PokemonScalarRelationFilter, PokemonWhereInput>
   }, "id" | "teamId_slot">
@@ -10125,6 +10210,11 @@ export namespace Prisma {
     teamId?: SortOrder
     pokemonId?: SortOrder
     slot?: SortOrder
+    heldItem?: SortOrderInput | SortOrder
+    move1?: SortOrderInput | SortOrder
+    move2?: SortOrderInput | SortOrder
+    move3?: SortOrderInput | SortOrder
+    move4?: SortOrderInput | SortOrder
     _count?: TeamMemberCountOrderByAggregateInput
     _avg?: TeamMemberAvgOrderByAggregateInput
     _max?: TeamMemberMaxOrderByAggregateInput
@@ -10140,6 +10230,11 @@ export namespace Prisma {
     teamId?: StringWithAggregatesFilter<"TeamMember"> | string
     pokemonId?: IntWithAggregatesFilter<"TeamMember"> | number
     slot?: IntWithAggregatesFilter<"TeamMember"> | number
+    heldItem?: StringNullableWithAggregatesFilter<"TeamMember"> | string | null
+    move1?: StringNullableWithAggregatesFilter<"TeamMember"> | string | null
+    move2?: StringNullableWithAggregatesFilter<"TeamMember"> | string | null
+    move3?: StringNullableWithAggregatesFilter<"TeamMember"> | string | null
+    move4?: StringNullableWithAggregatesFilter<"TeamMember"> | string | null
   }
 
   export type TournamentWhereInput = {
@@ -10622,6 +10717,11 @@ export namespace Prisma {
   export type TeamMemberCreateInput = {
     id?: string
     slot: number
+    heldItem?: string | null
+    move1?: string | null
+    move2?: string | null
+    move3?: string | null
+    move4?: string | null
     team: TeamCreateNestedOneWithoutMembersInput
     pokemon: PokemonCreateNestedOneWithoutTeamMembersInput
   }
@@ -10631,11 +10731,21 @@ export namespace Prisma {
     teamId: string
     pokemonId: number
     slot: number
+    heldItem?: string | null
+    move1?: string | null
+    move2?: string | null
+    move3?: string | null
+    move4?: string | null
   }
 
   export type TeamMemberUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     slot?: IntFieldUpdateOperationsInput | number
+    heldItem?: NullableStringFieldUpdateOperationsInput | string | null
+    move1?: NullableStringFieldUpdateOperationsInput | string | null
+    move2?: NullableStringFieldUpdateOperationsInput | string | null
+    move3?: NullableStringFieldUpdateOperationsInput | string | null
+    move4?: NullableStringFieldUpdateOperationsInput | string | null
     team?: TeamUpdateOneRequiredWithoutMembersNestedInput
     pokemon?: PokemonUpdateOneRequiredWithoutTeamMembersNestedInput
   }
@@ -10645,6 +10755,11 @@ export namespace Prisma {
     teamId?: StringFieldUpdateOperationsInput | string
     pokemonId?: IntFieldUpdateOperationsInput | number
     slot?: IntFieldUpdateOperationsInput | number
+    heldItem?: NullableStringFieldUpdateOperationsInput | string | null
+    move1?: NullableStringFieldUpdateOperationsInput | string | null
+    move2?: NullableStringFieldUpdateOperationsInput | string | null
+    move3?: NullableStringFieldUpdateOperationsInput | string | null
+    move4?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TeamMemberCreateManyInput = {
@@ -10652,11 +10767,21 @@ export namespace Prisma {
     teamId: string
     pokemonId: number
     slot: number
+    heldItem?: string | null
+    move1?: string | null
+    move2?: string | null
+    move3?: string | null
+    move4?: string | null
   }
 
   export type TeamMemberUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     slot?: IntFieldUpdateOperationsInput | number
+    heldItem?: NullableStringFieldUpdateOperationsInput | string | null
+    move1?: NullableStringFieldUpdateOperationsInput | string | null
+    move2?: NullableStringFieldUpdateOperationsInput | string | null
+    move3?: NullableStringFieldUpdateOperationsInput | string | null
+    move4?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TeamMemberUncheckedUpdateManyInput = {
@@ -10664,6 +10789,11 @@ export namespace Prisma {
     teamId?: StringFieldUpdateOperationsInput | string
     pokemonId?: IntFieldUpdateOperationsInput | number
     slot?: IntFieldUpdateOperationsInput | number
+    heldItem?: NullableStringFieldUpdateOperationsInput | string | null
+    move1?: NullableStringFieldUpdateOperationsInput | string | null
+    move2?: NullableStringFieldUpdateOperationsInput | string | null
+    move3?: NullableStringFieldUpdateOperationsInput | string | null
+    move4?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TournamentCreateInput = {
@@ -11202,6 +11332,11 @@ export namespace Prisma {
     teamId?: SortOrder
     pokemonId?: SortOrder
     slot?: SortOrder
+    heldItem?: SortOrder
+    move1?: SortOrder
+    move2?: SortOrder
+    move3?: SortOrder
+    move4?: SortOrder
   }
 
   export type TeamMemberAvgOrderByAggregateInput = {
@@ -11214,6 +11349,11 @@ export namespace Prisma {
     teamId?: SortOrder
     pokemonId?: SortOrder
     slot?: SortOrder
+    heldItem?: SortOrder
+    move1?: SortOrder
+    move2?: SortOrder
+    move3?: SortOrder
+    move4?: SortOrder
   }
 
   export type TeamMemberMinOrderByAggregateInput = {
@@ -11221,6 +11361,11 @@ export namespace Prisma {
     teamId?: SortOrder
     pokemonId?: SortOrder
     slot?: SortOrder
+    heldItem?: SortOrder
+    move1?: SortOrder
+    move2?: SortOrder
+    move3?: SortOrder
+    move4?: SortOrder
   }
 
   export type TeamMemberSumOrderByAggregateInput = {
@@ -12339,6 +12484,11 @@ export namespace Prisma {
   export type TeamMemberCreateWithoutPokemonInput = {
     id?: string
     slot: number
+    heldItem?: string | null
+    move1?: string | null
+    move2?: string | null
+    move3?: string | null
+    move4?: string | null
     team: TeamCreateNestedOneWithoutMembersInput
   }
 
@@ -12346,6 +12496,11 @@ export namespace Prisma {
     id?: string
     teamId: string
     slot: number
+    heldItem?: string | null
+    move1?: string | null
+    move2?: string | null
+    move3?: string | null
+    move4?: string | null
   }
 
   export type TeamMemberCreateOrConnectWithoutPokemonInput = {
@@ -12381,6 +12536,11 @@ export namespace Prisma {
     teamId?: StringFilter<"TeamMember"> | string
     pokemonId?: IntFilter<"TeamMember"> | number
     slot?: IntFilter<"TeamMember"> | number
+    heldItem?: StringNullableFilter<"TeamMember"> | string | null
+    move1?: StringNullableFilter<"TeamMember"> | string | null
+    move2?: StringNullableFilter<"TeamMember"> | string | null
+    move3?: StringNullableFilter<"TeamMember"> | string | null
+    move4?: StringNullableFilter<"TeamMember"> | string | null
   }
 
   export type UserCreateWithoutTeamsInput = {
@@ -12409,6 +12569,11 @@ export namespace Prisma {
   export type TeamMemberCreateWithoutTeamInput = {
     id?: string
     slot: number
+    heldItem?: string | null
+    move1?: string | null
+    move2?: string | null
+    move3?: string | null
+    move4?: string | null
     pokemon: PokemonCreateNestedOneWithoutTeamMembersInput
   }
 
@@ -12416,6 +12581,11 @@ export namespace Prisma {
     id?: string
     pokemonId: number
     slot: number
+    heldItem?: string | null
+    move1?: string | null
+    move2?: string | null
+    move3?: string | null
+    move4?: string | null
   }
 
   export type TeamMemberCreateOrConnectWithoutTeamInput = {
@@ -13420,11 +13590,21 @@ export namespace Prisma {
     id?: string
     teamId: string
     slot: number
+    heldItem?: string | null
+    move1?: string | null
+    move2?: string | null
+    move3?: string | null
+    move4?: string | null
   }
 
   export type TeamMemberUpdateWithoutPokemonInput = {
     id?: StringFieldUpdateOperationsInput | string
     slot?: IntFieldUpdateOperationsInput | number
+    heldItem?: NullableStringFieldUpdateOperationsInput | string | null
+    move1?: NullableStringFieldUpdateOperationsInput | string | null
+    move2?: NullableStringFieldUpdateOperationsInput | string | null
+    move3?: NullableStringFieldUpdateOperationsInput | string | null
+    move4?: NullableStringFieldUpdateOperationsInput | string | null
     team?: TeamUpdateOneRequiredWithoutMembersNestedInput
   }
 
@@ -13432,18 +13612,33 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
     slot?: IntFieldUpdateOperationsInput | number
+    heldItem?: NullableStringFieldUpdateOperationsInput | string | null
+    move1?: NullableStringFieldUpdateOperationsInput | string | null
+    move2?: NullableStringFieldUpdateOperationsInput | string | null
+    move3?: NullableStringFieldUpdateOperationsInput | string | null
+    move4?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TeamMemberUncheckedUpdateManyWithoutPokemonInput = {
     id?: StringFieldUpdateOperationsInput | string
     teamId?: StringFieldUpdateOperationsInput | string
     slot?: IntFieldUpdateOperationsInput | number
+    heldItem?: NullableStringFieldUpdateOperationsInput | string | null
+    move1?: NullableStringFieldUpdateOperationsInput | string | null
+    move2?: NullableStringFieldUpdateOperationsInput | string | null
+    move3?: NullableStringFieldUpdateOperationsInput | string | null
+    move4?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TeamMemberCreateManyTeamInput = {
     id?: string
     pokemonId: number
     slot: number
+    heldItem?: string | null
+    move1?: string | null
+    move2?: string | null
+    move3?: string | null
+    move4?: string | null
   }
 
   export type TournamentRegistrationCreateManyTeamInput = {
@@ -13495,6 +13690,11 @@ export namespace Prisma {
   export type TeamMemberUpdateWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
     slot?: IntFieldUpdateOperationsInput | number
+    heldItem?: NullableStringFieldUpdateOperationsInput | string | null
+    move1?: NullableStringFieldUpdateOperationsInput | string | null
+    move2?: NullableStringFieldUpdateOperationsInput | string | null
+    move3?: NullableStringFieldUpdateOperationsInput | string | null
+    move4?: NullableStringFieldUpdateOperationsInput | string | null
     pokemon?: PokemonUpdateOneRequiredWithoutTeamMembersNestedInput
   }
 
@@ -13502,12 +13702,22 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     pokemonId?: IntFieldUpdateOperationsInput | number
     slot?: IntFieldUpdateOperationsInput | number
+    heldItem?: NullableStringFieldUpdateOperationsInput | string | null
+    move1?: NullableStringFieldUpdateOperationsInput | string | null
+    move2?: NullableStringFieldUpdateOperationsInput | string | null
+    move3?: NullableStringFieldUpdateOperationsInput | string | null
+    move4?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TeamMemberUncheckedUpdateManyWithoutTeamInput = {
     id?: StringFieldUpdateOperationsInput | string
     pokemonId?: IntFieldUpdateOperationsInput | number
     slot?: IntFieldUpdateOperationsInput | number
+    heldItem?: NullableStringFieldUpdateOperationsInput | string | null
+    move1?: NullableStringFieldUpdateOperationsInput | string | null
+    move2?: NullableStringFieldUpdateOperationsInput | string | null
+    move3?: NullableStringFieldUpdateOperationsInput | string | null
+    move4?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TournamentRegistrationUpdateWithoutTeamInput = {

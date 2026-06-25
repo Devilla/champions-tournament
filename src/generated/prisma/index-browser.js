@@ -152,7 +152,12 @@ exports.Prisma.TeamMemberScalarFieldEnum = {
   id: 'id',
   teamId: 'teamId',
   pokemonId: 'pokemonId',
-  slot: 'slot'
+  slot: 'slot',
+  heldItem: 'heldItem',
+  move1: 'move1',
+  move2: 'move2',
+  move3: 'move3',
+  move4: 'move4'
 };
 
 exports.Prisma.TournamentScalarFieldEnum = {

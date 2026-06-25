@@ -4,17 +4,19 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
+const memberSchema = z.object({
+  pokemonId: z.number().int().min(1),
+  slot: z.number().int().min(1).max(6),
+  heldItem: z.string().max(100).optional().nullable(),
+  move1: z.string().max(100).optional().nullable(),
+  move2: z.string().max(100).optional().nullable(),
+  move3: z.string().max(100).optional().nullable(),
+  move4: z.string().max(100).optional().nullable(),
+});
+
 const updateTeamSchema = z.object({
   name: z.string().min(1).max(50).optional(),
-  members: z
-    .array(
-      z.object({
-        pokemonId: z.number().int().min(1).max(151),
-        slot: z.number().int().min(1).max(6),
-      })
-    )
-    .length(6)
-    .optional(),
+  members: z.array(memberSchema).length(6).optional(),
 });
 
 export async function GET(
@@ -68,6 +70,11 @@ export async function PUT(
           teamId,
           pokemonId: m.pokemonId,
           slot: m.slot,
+          heldItem: m.heldItem ?? null,
+          move1: m.move1 ?? null,
+          move2: m.move2 ?? null,
+          move3: m.move3 ?? null,
+          move4: m.move4 ?? null,
         })),
       });
     }

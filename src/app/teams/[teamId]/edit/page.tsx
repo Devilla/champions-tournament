@@ -31,6 +31,11 @@ export default async function EditTeamPage({
         initialMembers={team.members.map((m) => ({
           pokemonId: m.pokemonId,
           slot: m.slot,
+          heldItem: m.heldItem,
+          move1: m.move1,
+          move2: m.move2,
+          move3: m.move3,
+          move4: m.move4,
         }))}
       />
     </div>
