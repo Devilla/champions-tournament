@@ -87,6 +87,9 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -170,6 +173,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
@@ -223,8 +231,7 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "sqlite",
-  "postinstall": false,
+  "activeProvider": "postgresql",
   "inlineDatasources": {
     "db": {
       "url": {
@@ -233,8 +240,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id             String       @id @default(cuid())\n  username       String       @unique\n  email          String       @unique\n  hashedPassword String\n  createdAt      DateTime     @default(now())\n  teams          Team[]\n  tournaments    Tournament[]\n}\n\nmodel Pokemon {\n  id             Int          @id\n  name           String\n  type1          String\n  type2          String?\n  hp             Int\n  attack         Int\n  defense        Int\n  specialAttack  Int\n  specialDefense Int\n  speed          Int\n  spriteUrl      String\n  artworkUrl     String\n  teamMembers    TeamMember[]\n}\n\nmodel Team {\n  id             String                   @id @default(cuid())\n  name           String\n  userId         String\n  createdAt      DateTime                 @default(now())\n  user           User                     @relation(fields: [userId], references: [id], onDelete: Cascade)\n  members        TeamMember[]\n  registrations  TournamentRegistration[]\n  matchesAsTeam1 Match[]                  @relation(\"team1\")\n  matchesAsTeam2 Match[]                  @relation(\"team2\")\n  matchesWon     Match[]                  @relation(\"winner\")\n}\n\nmodel TeamMember {\n  id        String  @id @default(cuid())\n  teamId    String\n  pokemonId Int\n  slot      Int\n  heldItem  String?\n  move1     String?\n  move2     String?\n  move3     String?\n  move4     String?\n  team      Team    @relation(fields: [teamId], references: [id], onDelete: Cascade)\n  pokemon   Pokemon @relation(fields: [pokemonId], references: [id])\n\n  @@unique([teamId, slot])\n}\n\nmodel Tournament {\n  id            String                   @id @default(cuid())\n  name          String\n  description   String?\n  maxTeams      Int\n  startDate     DateTime\n  status        String                   @default(\"registration\")\n  createdAt     DateTime                 @default(now())\n  createdById   String\n  createdBy     User                     @relation(fields: [createdById], references: [id], onDelete: Cascade)\n  registrations TournamentRegistration[]\n  matches       Match[]\n}\n\nmodel TournamentRegistration {\n  id           String     @id @default(cuid())\n  tournamentId String\n  teamId       String\n  seed         Int?\n  createdAt    DateTime   @default(now())\n  tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)\n  team         Team       @relation(fields: [teamId], references: [id], onDelete: Cascade)\n\n  @@unique([tournamentId, teamId])\n}\n\nmodel Match {\n  id           String     @id @default(cuid())\n  tournamentId String\n  round        Int\n  position     Int\n  team1Id      String?\n  team2Id      String?\n  winnerId     String?\n  score1       Int?\n  score2       Int?\n  status       String     @default(\"pending\")\n  completedAt  DateTime?\n  tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)\n  team1        Team?      @relation(\"team1\", fields: [team1Id], references: [id])\n  team2        Team?      @relation(\"team2\", fields: [team2Id], references: [id])\n  winner       Team?      @relation(\"winner\", fields: [winnerId], references: [id])\n\n  @@unique([tournamentId, round, position])\n}\n",
-  "inlineSchemaHash": "a7fa2856e3b5bc61ef51a53229c30d202723376e04e241f13b5c287566c7214e",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id             String       @id @default(cuid())\n  username       String       @unique\n  email          String       @unique\n  hashedPassword String\n  createdAt      DateTime     @default(now())\n  teams          Team[]\n  tournaments    Tournament[]\n}\n\nmodel Pokemon {\n  id             Int          @id\n  name           String\n  type1          String\n  type2          String?\n  hp             Int\n  attack         Int\n  defense        Int\n  specialAttack  Int\n  specialDefense Int\n  speed          Int\n  spriteUrl      String\n  artworkUrl     String\n  teamMembers    TeamMember[]\n}\n\nmodel Team {\n  id             String                   @id @default(cuid())\n  name           String\n  userId         String\n  createdAt      DateTime                 @default(now())\n  user           User                     @relation(fields: [userId], references: [id], onDelete: Cascade)\n  members        TeamMember[]\n  registrations  TournamentRegistration[]\n  matchesAsTeam1 Match[]                  @relation(\"team1\")\n  matchesAsTeam2 Match[]                  @relation(\"team2\")\n  matchesWon     Match[]                  @relation(\"winner\")\n}\n\nmodel TeamMember {\n  id        String  @id @default(cuid())\n  teamId    String\n  pokemonId Int\n  slot      Int\n  heldItem  String?\n  move1     String?\n  move2     String?\n  move3     String?\n  move4     String?\n  team      Team    @relation(fields: [teamId], references: [id], onDelete: Cascade)\n  pokemon   Pokemon @relation(fields: [pokemonId], references: [id])\n\n  @@unique([teamId, slot])\n}\n\nmodel Tournament {\n  id            String                   @id @default(cuid())\n  name          String\n  description   String?\n  maxTeams      Int\n  startDate     DateTime\n  status        String                   @default(\"registration\")\n  createdAt     DateTime                 @default(now())\n  createdById   String\n  createdBy     User                     @relation(fields: [createdById], references: [id], onDelete: Cascade)\n  registrations TournamentRegistration[]\n  matches       Match[]\n}\n\nmodel TournamentRegistration {\n  id           String     @id @default(cuid())\n  tournamentId String\n  teamId       String\n  seed         Int?\n  createdAt    DateTime   @default(now())\n  tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)\n  team         Team       @relation(fields: [teamId], references: [id], onDelete: Cascade)\n\n  @@unique([tournamentId, teamId])\n}\n\nmodel Match {\n  id           String     @id @default(cuid())\n  tournamentId String\n  round        Int\n  position     Int\n  team1Id      String?\n  team2Id      String?\n  winnerId     String?\n  score1       Int?\n  score2       Int?\n  status       String     @default(\"pending\")\n  completedAt  DateTime?\n  tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)\n  team1        Team?      @relation(\"team1\", fields: [team1Id], references: [id])\n  team2        Team?      @relation(\"team2\", fields: [team2Id], references: [id])\n  winner       Team?      @relation(\"winner\", fields: [winnerId], references: [id])\n\n  @@unique([tournamentId, round, position])\n}\n",
+  "inlineSchemaHash": "c88ddce676ed3f7592bddcbe0d01fb78cf98239610f483bab83860df74068c69",
   "copyEngine": true
 }
 config.dirname = '/'

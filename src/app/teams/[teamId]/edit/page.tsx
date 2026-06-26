@@ -1,5 +1,4 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { auth } from "@/auth";
 import { redirect, notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import TeamBuilder from "@/components/teams/TeamBuilder";
@@ -9,7 +8,7 @@ export default async function EditTeamPage({
 }: {
   params: Promise<{ teamId: string }>;
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session) redirect("/login");
 
   const { teamId } = await params;

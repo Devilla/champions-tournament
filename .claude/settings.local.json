@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(chmod -R 777 /Users/devilla/work/champions-tournament/node_modules)"
+      "Bash(chmod -R 777 /Users/devilla/work/champions-tournament/node_modules)",
+      "Skill(run)",
+      "Bash(curl *)",
+      "Bash(npm run *)",
+      "Bash(echo \"PID: $!\")"
     ]
   }
 }

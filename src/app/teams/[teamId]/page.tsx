@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { auth } from "@/auth";
 import Image from "next/image";
 import Link from "next/link";
 import TypeBadge from "@/components/pokemon/TypeBadge";
@@ -24,7 +23,7 @@ export default async function TeamDetailPage({
 
   if (!team) notFound();
 
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const isOwner = session?.user?.id === team.user.id;
 
   return (

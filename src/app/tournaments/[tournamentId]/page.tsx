@@ -7,7 +7,11 @@ import Scoreboard from "@/components/scoreboard/Scoreboard";
 import useSWR from "swr";
 import { use } from "react";
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+const fetcher = async (url: string) => {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(await r.text());
+  return r.json();
+};
 
 interface Tournament {
   id: string;
@@ -91,7 +95,7 @@ export default function TournamentDetailPage({
             )}
             <div className="flex items-center gap-4 mt-2 text-sm">
               <span className="text-gray-500">
-                by {tournament.createdBy.username}
+                by {tournament.createdBy?.username}
               </span>
               <span
                 className={`capitalize font-semibold ${
